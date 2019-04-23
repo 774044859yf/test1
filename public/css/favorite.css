@@ -1,0 +1,193 @@
+.favorites {
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+html{
+    font-size: 20px;
+}
+
+.favoriteCon {
+    position: absolute;
+    z-index: 1;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -o-text-size-adjust: none;
+    text-size-adjust: none;
+    background: #fff;
+}
+
+
+.swiper-container {
+    width: 100%;
+}
+
+/*-------------收藏的日程票样------------*/
+.purses {
+    width: 17.5rem;
+    margin: .5rem auto;
+    background: #1cb8cf;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    position: relative;
+    color: #fff;
+}
+
+.purses:before {
+    position: absolute;
+    top: 0;
+    left: 3.9rem;
+    bottom: 0;
+    content: '';
+    display: block;
+    border-right: 1px dashed #fff;
+}
+
+.purses:after {
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: -2.2rem;
+    content: '';
+    display: block;
+    background: #fff;
+    -webkit-border-radius: 3rem;
+    -moz-border-radius: 3rem;
+    border-radius: 3rem;
+}
+
+#favorite .purseDetail {
+    float: right;
+}
+
+.purses .timeContainer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 3.9rem;
+}
+
+#favorite .purseTime {
+    width: calc(3.4rem - 1px);
+    margin: auto;
+    height: 4rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: .5rem;
+    /*border-right:1px dashed #fff;*/
+}
+
+#favorite .purseDetail:before {
+    width: 1rem;
+    height: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    border-radius: 1rem;
+    background: #fff;
+    position: absolute;
+    content: '';
+    display: block;
+    top: -.5rem;
+    left: -.5rem;
+}
+
+#favorite .purseDetail:after {
+    width: 1rem;
+    height: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    border-radius: 1rem;
+    background: #fff;
+    position: absolute;
+    content: '';
+    display: block;
+    bottom: -.5rem;
+    left: -.5rem;
+}
+
+#favorite .purseDetail {
+    width: 13.1rem;
+    position: relative;
+    padding: .9rem .5rem .9rem 0;
+    /*top:0;*/
+    /*right:.5rem;*/
+    /*bottom:0;*/
+    /*margin:auto;*/
+}
+
+.purseDetail .purseName {
+    font-size: .9rem;
+    padding-left: .5rem;
+}
+
+#favorite .par_list:nth-child(3) .par_r {
+    width: calc(100% - 5.5rem);
+}
+
+.purses .apply_for {
+    width: .75rem;
+    height: .875rem;
+    background: url(../img/del.png) no-repeat;
+    -webkit-background-size:100% 100%;
+    background-size:100% 100%;
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+#favoriteIcon{
+    width:8.25rem;
+    height:8.25rem;
+    margin:6.6rem auto 4.6rem;
+    background: url(../img/star_big.png) no-repeat;
+    -webkit-background-size:100% 100%;
+    background-size:100% 100%;
+    font-size:.85rem;
+    color: #7e7e7e;
+    /*line-height:9.8rem;*/
+    text-align: center;
+    position: relative;
+}
+#favoriteIcon>div{
+    position: absolute;
+    top:4.6rem;
+    width:100%;
+    text-align: center;
+}
+.add-favorite{
+    display: block;
+    width:14.4rem;
+    height:2rem;
+    margin:auto;
+    background: #1cb8cf;
+    color: #FFFFFF;
+    font-size:.85rem;
+    text-align: center;
+    line-height: 2rem;
+}
