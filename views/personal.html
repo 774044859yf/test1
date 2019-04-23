@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <script type="text/javascript" charset="UTF-8" src="/public/js/init.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function init() {
+            var str = '<link href="/public/css/normalize.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str += '<link href="/public/css/all.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str += '<link href="/public/css/swiper-3.4.0.min.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str += '<link href="/public/css/favorite.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+
+            str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/jquery.js" + utils._var() + "'>" + "</scr" + "ipt>";
+            str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/swiper-3.4.0.min.js" + utils._var() + "'>" + "</scr" + "ipt>";
+            str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/iscroll-probe.js" + utils._var() + "'>" + "</scr" + "ipt>";
+
+            document.write(str);
+            str = "";
+        }
+        init();
+    </script>
+    <style>
+        #addModel {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            display: none;
+            background: #f4f4f4;
+        }
+
+        #closeModel {
+            width: 2.5rem;
+            height: 2.5rem;
+            text-align: center;
+            line-height: 2.5rem;
+            background: rgb(33, 183, 207);
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 1rem;
+
+        }
+
+        #modelHead {
+            height: 2.5rem;
+            text-align: center;
+            line-height: 2.5rem;
+            margin: 0 0 10px;
+            font-size: 1rem;
+            background: #dddddd;
+        }
+
+        .hiddenModel label {
+            display: inline-block;
+            width: 4rem;
+            height: 2rem;
+            line-height: 2rem;
+            text-align: center;
+            font-size: .7rem;
+        }
+
+        .hiddenModel input {
+            width: 13rem;
+            height: 1.5rem;
+            margin: 5px 0;
+            color: #a6a6a6;
+            padding-left: 1rem;
+            border: none;
+            font-size: .7rem;
+        }
+
+        .hiddenModel #game_intro {
+            width: calc(13rem - 2px);
+            padding-left: 1rem;
+            border: none;
+            font-size: .7rem;
+            color: #a6a6a6;
+
+        }
+
+        #tag_number {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: #a6a6a6;
+            /*font-size: .8rem;*/
+        }
+
+        #tagContainer {
+            width:14rem ;
+            margin: auto;
+            display:inline-block;
+            height: 7rem;
+            background: #fff;
+            margin-top: 10px;
+            overflow: auto;
+        }
+
+        .addBtn {
+            display: inline-block;
+            width: calc(1.5rem + 2px);
+            height: calc(1.5rem + 2px);
+            background: #fff;
+            text-align: center;
+            font-size: .7rem;
+
+            line-height: calc(1.5rem + 2px);
+        }
+
+        #subGameAdd {
+            width: 13rem;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            text-align: center;
+            position: absolute;
+            bottom: .5rem;
+            right: 0;
+            left: 0;
+            margin: auto;
+            /*background: #fff;*/
+            background: rgb(33, 183, 207);
+        }
+
+        #tag_name {
+            width: 8rem;
+            height: 1.5rem;
+            font-size: .7rem;
+
+        }
+
+        .game_tags {
+            display: inline-block;
+            height: .8rem;
+            line-height: .8rem;
+            padding: 9px calc(4px + .8rem) 9px 4px;
+            position: relative;
+            background: #bebebe;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            margin: 2px;
+            font-size: .8rem;
+
+        }
+        .del {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            font-size: .8rem;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            margin: auto;
+            height: calc(.8rem + 18px);
+            width: .8rem;
+            text-align: center;
+            line-height:  calc(.8rem + 18px);
+            background: rgb(33, 183, 207);
+        }
+        #tagLimit{
+            width: 8rem;
+
+            text-align: center;
+        }
+        .cN{
+            width: calc(1.5rem + 2px);
+            height: calc(1.5rem + 2px);
+            display: inline-block;
+            background: #fff;
+            text-align: center;
+            line-height: calc(1.5rem + 2px);
+            font-size: .7rem;
+        }
+        .notC{
+            position: relative;
+        }
+        #addNotary{
+            font-size: .7rem;
+            text-align: center;
+        }
+        #notary_container{
+            position: absolute;
+            display:none;
+            overflow-y: auto;
+            top: 100%;
+            right: 0;
+            width: 100%;
+            max-height: 7rem;
+            background: #fff;
+            text-align: center;
+            border: 1px solid #dddddd;
+        }
+    </style>
+    <title>Young Design</title>
+
+</head>
+<!--我的收藏-->
+<body>
+<div id="favorite">
+
+    <div id="head_nav" class="clear" style="width: calc(100% - 2.5rem);">
+        <div class="nav_l" style="position: relative;">我的发布
+            <div class="personalAdd" style="width: 2.5rem;height: 2.5rem;position: absolute;
+        top: 0;right: 0;">+
+            </div>
+        </div>
+        <div class="nav_r">场次收藏</div>
+    </div>
+    <div class="swiper-container swi">
+        <div id="favoriteContainer" class="swiper-wrapper"></div>
+    </div>
+    <div id="addModel" class="hiddenModel">
+        <!-- 添加、编辑模块-->
+        <div id="closeModel">×</div>
+        <div id="modelHead"></div>
+        <label for="game_name">场次名称</label>
+        <input type="text" id="game_name">
+        <label for="game_start_date">开始日期</label>
+        <input type="text" id="game_start_date" placeholder="示例格式:2017-05-05">
+        <!--<label for="game_status">状态</label>-->
+        <!--<input type="text" id="game_status">-->
+        <label for="game_type">场次类别</label>
+        <input type="text" id="game_type">
+        <div class="notC">
+            <label>选择公正人</label>
+            <input id="addNotary" data-id="0" placeholder="点击添加公证人" readonly/>
+            <div id="notary_container">
+                <!--<div class="notarys">公证人一</div>-->
+                <!--<div class="notarys">公证人二</div>-->
+                <!--<div class="notarys">公证人三</div>-->
+            </div>
+        </div>
+        <label>场次简介</label>
+        <textarea name="game_intro" id="game_intro" cols="25" rows="5"></textarea>
+        <label for="tag_number">标签</label>
+        <input type="text" id="tag_name">
+
+        <div id="addTag" class="addBtn">+</div>
+        <input type="text" id="tag_number" readonly value="0">
+        <label>标签列表</label>
+        <div id="tagContainer">
+            <!--<div class="game_tags">标签一<div class="del">×</div></div>-->
+        </div>
+        <div>
+            <label>限制数量</label>
+            <!--<div id="controlTagNumber">-->
+                <span id="reduceNum" class="cN">-</span>
+                <input type="text" id="tagLimit" value="0" readonly>
+                <span id="plusNum" class="cN">+</span>
+            <!--</div>-->
+        </div>
+
+
+
+        <div id="subGameAdd">确定</div>
+    </div>
+</div>
+</body>
+<script charset='utf-8' type="text/javascript">
+    function add() {
+        var str = "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/all.js" + utils._var() + "'>" + "</scr" + "ipt>";
+        str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/favorite.js" + utils._var() + "'>" + "</scr" + "ipt>";
+        document.write(str);
+        str = "";
+    }
+    add();
+</script>
+
+
+</html>

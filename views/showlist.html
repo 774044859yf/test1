@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="screen-orientation" content="portrait">
+    <!--<meta name="apple-mobile-web-app-capable" content="yes"/>-->
+    <!--<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>-->
+    <meta http-equiv="Cache-Control" content="max-age=0"/>
+    <!--<meta http-equiv="Pragma" content="no-cache"/>-->
+    <!--<meta http-equiv="Expires" content="0"/>-->
+    <title>Young Design</title>
+    <script type="text/javascript" charset="UTF-8" src="/public/js/init.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function init () {
+            var str = '<link href="/public/css/normalize.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str+='<link href="/public/css/all.css' +utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str+="<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/jquery.js"+utils._var()+"'>" + "</scr" + "ipt>";
+            str+="<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/iscroll-probe.js"+utils._var()+"'>" + "</scr" + "ipt>";
+
+            document.write(str);
+            str = "";
+        }
+        init();
+    </script>
+    <style>
+        html{
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<!--展商列表-->
+<div id="refurbish">
+    <div class="ref_txt"></div>
+</div>
+<div class="loading" style="display: none">
+    <i class="l_icon"></i>
+    <span>正在查询请稍后...</span>
+</div>
+<div id="exhibitorsList" class="page">
+    <!--已结束投票列表-->
+    <!--只进行添加场次，
+    和让该场次显示到大屏幕，
+    筛选 投票日期 、投票发起人 、输入投票名字 -->
+    <div id="exhibitorsList_search">
+        <div id="exhibitor_search">
+            <div class="exhibitor_search menu" id="exhibitor_search_i">搜索</div>
+            <div class="exhibitor_search menu" id="exhibitor_search_s" data-cho="0">筛选</div>
+            <!--<div id="exhibitor_search_tags"></div>-->
+        </div>
+        <div id="exhibitor_type_search" class="exhibitor_search_C">
+            <!--<div class="closeSearch">×</div>-->
+            <!--<div id="ex_choose">-->
+            <!--<div id="choose_tags"></div>-->
+            <!--</div>-->
+            <!--<div id="ex_type_item">-->
+            <div id="ex_type">
+                <div class="choose_tag">
+                    <span class="menu"></span>
+                    <div class="cho_num"> -</div>
+
+                </div>
+                <div class="choose_tag">
+                    <span class="menu">国别/区域</span>
+                    <div class="cho_num"> -</div>
+                </div>
+                <div class="choose_tag">
+                    <span class="menu">最终用途</span>
+                    <div class="cho_num"> -</div>
+                </div>
+                <div class="choose_tag">
+                    <span class="menu"> 产品类别</span>
+                    <div class="cho_num"> -</div>
+                </div>
+            </div>
+
+            <div id="type_container">
+                <div id="submitSearch">確定搜索</div>
+            </div>
+
+            <!--</div>-->
+        </div>
+    </div>
+    <div id="exhibitor_input_search">
+        <div id="ipt_search_container">
+            <div id="ipt_search_con">
+                <input class="menu" id="ipt_search" type="text" placeholder="请输入查询条件"/>
+                <div id="ipt_cancel">×</div>
+            </div>
+            <div id="ipt_submit" class="menu" data-type="0">取消</div>
+        </div>
+        <div id="ipt_search_hot">
+            <div class="ipt_search_name menu">热门搜索</div>
+            <div id="ipt_hot_container">
+                <div class="search_tag ">辅料系列</div>
+                <div class="search_tag ">丝绸</div>
+            </div>
+        </div>
+        <div id="ipt_search_history">
+            <div class="ipt_search_name menu">历史搜索</div>
+            <div id="ipt_history_container"></div>
+        </div>
+    </div>
+
+    <div id="exhibitor_list">
+        <div id="scroll_r">
+            <div id="ex_list_con">
+                <!--<div style="height: 3000px; background:-webkit-gradient(linear, 0 0, 0 bottom, from(#ff0000), to(rgba(0, 0, 255, 0.5)));"></div>-->
+            </div>
+        </div>
+        <!--<div id="ex_list_der"></div>-->
+    </div>
+
+</div>
+</body>
+<script charset='utf-8' type="text/javascript">
+
+
+    //    投票管理（添加场次，添加标签，编辑，删除）-------------------------------1
+
+    //    公证人管理（添加公证人，编辑，是否显示到用户端）-------------------------2
+    //上传公证人照片
+
+    //    投票场次操作------------------------------------------------------------3
+
+    // 切换投票场次，
+    // 显示所有场次列表，
+    // 点击显示详细信息，（显示投票场次介绍，包括标签，已经结束的显示标签的票数）
+    // 保存当场投票结果 （并更换该场次的状态为已结束），结束后显示票数
+
+
+    //    投票和公正切换--------------------------------------------------------4
+
+
+
+    function add () {
+        var str="<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/all.js"+utils._var()+"'>" + "</scr" + "ipt>" ;
+        str+= "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/exhibitor.js"+utils._var()+"'>" + "</scr" + "ipt>";
+        document.write(str);
+    }
+    add();
+</script>
+</html>

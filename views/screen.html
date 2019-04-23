@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <script src="/public/js/socket.io.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/public/js/init.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function init() {
+            var str = '<link href="/public/css/normalize.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str += '<link href="/public/css/all.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+
+            str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/jquery.js" + utils._var() + "'>" + "</scr" + "ipt>";
+            str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/swiper-3.4.0.min.js" + utils._var() + "'>" + "</scr" + "ipt>";
+            str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/iscroll-probe.js" + utils._var() + "'>" + "</scr" + "ipt>";
+
+            document.write(str);
+            str = "";
+        }
+        init();
+    </script>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /*background: #1b222b;*/
+            /*background: #cfd7dd;*/
+            position: relative;
+        }
+
+        /*#main {*/
+            /*width: 100%;*/
+            /*height: 100%;*/
+        /*}*/
+
+        #game_name {
+            text-align: center;
+            /*background: #bebebe;*/
+            height: 1.2rem;
+            line-height: 1.2rem;
+        }
+        #game_show{
+            position: absolute;
+            top: 1.2rem;
+            bottom: 1.2rem;
+            margin: auto;
+            right: 0;
+            left: 0;
+            width: 90%;
+            background-image: url(../public/img/background-screen1.jpg);
+            background-repeat: no-repeat;
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+            /*padding: 0 30px 5px 5px;*/
+            overflow: hidden;
+
+        }
+        #game_tag_container {
+            overflow: hidden;
+
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 90%;
+            margin: auto;
+            bottom: 0;
+            height: 1.2rem;
+            /*background: #ec5a5a;*/
+            text-align: center;
+        }
+        .num_shape {
+            width: 30px;
+            position: absolute;
+            bottom: 0;
+            /*left: 0;*/
+            /*right: 0;*/
+            height: 10px;
+            margin: auto;
+            background: #88abda;
+            -webkit-transition: all .5s;
+            -moz-transition: all .5s;
+            -ms-transition: all .5s;
+            -o-transition: all .5s;
+            transition: all .5s;
+        }
+        .num {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            margin: auto;
+            font-size: .2rem;
+
+        }
+        .tag {
+            /*标签的宽度*/
+            -webkit-transform: rotate(30deg);
+            -moz-transform: rotate(30deg);
+            -ms-transform: rotate(30deg) ;
+            -o-transform: rotate(30deg) ;
+            transform: rotate(30deg) ;
+            height:.8rem;
+            width: 1.2rem;
+            position: absolute;
+            top: 0;
+            bottom:0;
+            /*left: 0;*/
+            /*right: 0;*/
+            margin: auto;
+            font-size: .2rem;
+        }
+
+        #game_notary_container {
+            background: #f3f3f3;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            display: none;
+            font-size: .25rem;
+        }
+
+        .notary_head {
+            text-align: center;
+            font-size: .6rem;
+            height: 1.5rem;
+            line-height: 1.5rem;
+        }
+
+        #notaryDetail {
+            width: 10rem;
+            max-height: 300px;
+            max-width: 550px;
+            position: absolute;
+            top: 1.5rem;
+            right: 0;
+            bottom: 2rem;
+            left: 0;
+            margin: auto;
+            background: #d3d3d3;
+        }
+
+        #notaryDetail div {
+            margin: .2rem 0;
+        }
+
+        #notaryDetail .l_name {
+            width: 30%;
+            display: inline-block;
+            margin-right: 10px;
+            text-align: right;
+        }
+
+        #notaryDetail .r_det {
+            width: 50%;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .summary {
+            text-align: center;
+            position: absolute;
+            bottom: 1rem;
+            left: 0;
+            right: 0;
+            height: 1rem;
+        }
+        #shapeContainer,#tagContainer{
+            position: absolute;
+            top: 0;
+            bottom:2px;
+            left:0;
+            transition: all .5s;
+            margin: auto;
+        }
+        #controlScreen{
+            position: absolute;
+            top: 0;
+            bottom: 50px;
+            margin: auto;
+            right: 10px;
+            width: 30px;
+            height: 100px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            background: #88abda;
+            display: none;
+        }
+        #controlScreen:hover{
+            cursor: pointer;
+        }
+        #controlScreen div{
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            position: relative;
+            color:#fff;
+        }
+        #toright:after{
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 0;
+            width: 80%;
+            left: 0;
+            right: 0;
+            margin: auto;
+            border-bottom: 1px solid #82a4d1;
+        }
+    </style>
+
+    <title>Young Design</title>
+
+</head>
+<body>
+
+<div id="main">
+    <div id="game_name">示例场次</div>
+    <div id="game_show">
+        <div id="shapeContainer">
+            <div class="num_shape">
+                <div class="num">0</div>
+            </div>
+        </div>
+    </div>
+    <div id="game_tag_container">
+        <div id="tagContainer">
+            <div class="tag">标签一</div>
+        </div>
+    </div>
+    <div id="controlScreen">
+        <div id="toright"> > </div>
+        <div id="toleft"> < </div>
+    </div>
+</div>
+
+<div id="game_notary_container"></div>
+
+</body>
+<script charset='utf-8' type="text/javascript">
+    function add() {
+        var str = "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/all.js" + utils._var() + "'>" + "</scr" + "ipt>";
+        str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/socket.io.js" + utils._var() + "'>" + "</scr" + "ipt>";
+        document.write(str);
+        str = "";
+    }
+    add();
+    function isEmptyObject(obj) {
+        for (var key in obj) {
+            return false;
+        }
+        return true;
+    }
+//        var socket = io.connect('ws://10.17.121.218:55555');
+//    var socket = io.connect('ws://172.27.188.10:55555');
+//    var socket = io.connect('ws://10.4.175.162:55555');
+//    var socket = io.connect('ws://223.104.3.198:5555');
+    var socket = io.connect('ws://192.168.43.109:5555');
+
+    var game_status_screen;
+    //默认申请显示投票环节
+    //  场次状态为1 则显示投票结果
+    //  不是本人的场次  状态为0 ，则显示未开始
+    var arr;
+    var game_detail = {};
+    var oItem = document.getElementsByClassName('item');
+    var game;
+    var screenW=$('#game_tag_container').width();
+    console.log($('#game_show')[0].offsetHeight);
+    var screenH=$('#game_show')[0].offsetHeight-90;
+//    增长高度时候用的数据
+    var screenInitLevel= 1,initTagHeight=10,addTagHeight,maxVoteNumber,
+//            初始化宽度用到的宽度
+            leftW= 5, initTagW=($('.tag').width()*1.73),initL=20,initShapeW=30,maxTagNumber;
+//    更改屏幕显示比例
+    function screenSize(){
+        addTagHeight=initTagHeight/screenInitLevel;
+        maxVoteNumber=Math.floor(screenH/addTagHeight)-1;
+        console.log('显示屏幕的宽度：'+screenW);
+        console.log('显示屏幕的高度：'+screenH);
+        console.log('最大票数：'+maxVoteNumber);
+        console.log('当前显示票数比例：1/'+screenInitLevel);
+    }
+    socket.emit('screenReady');
+    socket.on('screenBegin',function(data){
+        game=data;
+        console.log('当前场次id：'+game);
+        screenDefault();
+        screenSize();
+    });
+
+    var screenPage;
+    var click=0;
+    $('#toright').on('click',function(){
+        if(click<screenPage*2-1){
+            click++;
+        }
+        moveScreen()
+    });
+    $('#toleft').on('click',function(){
+        if(click>0){
+            click--;
+        }
+        moveScreen()
+    });
+    function moveScreen(){
+        $('#tagContainer')[0].style.left= -click*screenW/2+'px'
+        $('#shapeContainer')[0].style.left= -click*screenW/2+'px'
+        console.log($('#tagContainer')[0].style.left);
+        console.log(click)
+        console.log(screenPage)
+    }
+    function screenDefault() {
+        if(game){
+            $.ajax({
+                type: 'post',
+                url: '/control/active_game',
+                data: {
+                    the_year_month: '201703',
+                    game_id:game
+                },
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    if (data.Success == '1') {
+                        game_detail.intro = data;
+                        $.ajax({
+                            type: 'post',
+                            url: '/control/active_tags',
+                            data: {
+                                the_year_month: '201703',
+                                game_id:game
+                            },
+                            success: function (data) {
+                                var data = JSON.parse(data);
+                                if (data.Success == '1') {
+                                    game_detail.tags = data;
+                                    screenInit()
+                                }
+                            }
+                        })
+
+                    }
+                }
+            })
+        }else{
+            $('body').html('<div style="width: 50%; height: 50% ; position: absolute;top: 0; bottom: 0;left: 0;right: 0;margin: auto;">当前没有正在进行的场次</div>')
+        }
+
+    }
+    function screenInit() {
+        //        初始化标签的宽度距离
+        maxTagNumber=Math.ceil(screenW/(initTagW+initL));
+        console.log('最多标签：'+maxTagNumber);
+        console.log('标签的宽度：'+initTagW);
+        var msg = game_detail.intro.data.list[0];
+        var tags = game_detail.tags.data.list;
+        var user = game_detail.tags.data.user_id;
+        var tag = '';
+        var shape='';
+        $('#game_name').html(msg.game_name);
+        $('#tagContainer').width(tags.length*(initTagW+initL)+leftW);
+        $('#shapeContainer').width(tags.length*(initTagW+initL)+leftW);
+        console.log()
+        if(tags.length>=maxTagNumber){
+//            超出分屏,每次切二分之屏
+            screenPage=Math.ceil(tags.length/maxTagNumber);
+            console.log('横屏的页数：'+screenPage)
+            $('#controlScreen').show();
+        }
+        else{
+//            居中显示
+            $('#controlScreen').hide();
+            $('#tagContainer').css({
+                right:'0',
+                left:'0',
+                margin:'auto'
+            })
+            $('#shapeContainer').css({
+                right:'0',
+                left:'0',
+                margin:'auto'
+            })
+        }
+        for (var i = 0, j = tags.length; i < j; i++) {
+            tag += '<div class="tag" style="left:'+((i*(initTagW+initL))+initL/2)+'px">' + tags[i].tag_name + '</div>'
+            shape+=  '<div id="tag' + tags[i].tag_id + '" class="num_shape" style="height:10px;left:'+((i*(initTagW+initL))+initL)+'px"><div class="num">0</div></div>'
+        }
+        document.getElementById('tagContainer').innerHTML = tag;
+        document.getElementById('shapeContainer').innerHTML = shape;
+
+//        发送请求，按照场次的是否结束 查询标签和标签数量
+        socket.emit('get_tag_num', msg.game_status);
+    }
+    socket.on('game_default', function (data) {
+        console.log('连接成功');
+        game_detail = {};
+        game=data
+        screenInitLevel= 1;
+        screenDefault();
+    });
+
+    //      列出标签和数量，并根据数量设置显示比例
+    socket.on('tag_num', function (data) {
+        var item = '';
+        console.log(data);
+        var arr=[]
+        if (!isEmptyObject(data)) {
+            for (var e in data) {
+                arr.push(data[e]);
+            }
+            arr.sort(function(a,b){
+                return b-a;
+            });
+            console.log(arr);
+//            按照最大的票数进行显示
+            if(Math.ceil(parseInt(arr[0])*initTagHeight/screenH)>screenInitLevel){
+                screenInitLevel=Math.ceil(parseInt(arr[0])*initTagHeight/screenH);
+            } else if(parseInt(arr[0])==0){
+                screenInitLevel= 1
+            }
+            screenSize();
+            for (var e in data) {
+                $('#tag' + e).css('height', (data[e] + 1) * addTagHeight + 'px').children('.num').html(data[e]);
+            }
+        }
+
+    });
+    //    活动进行中的添加  根据票数改变显示比例
+    socket.on('tag_add', function (data) {
+        console.log(data)
+        for (var i = 0, j = data.length; i < j; i++) {
+//            console.log(data[i]);
+//            $('#tag' + data[i]).css('height', (parseInt($('#tag' + data[i]).children('.num').html()))*addTagHeight + addTagHeight + 'px').children('.num').html(parseInt($('#tag' + data[i]).children('.num').html()) + 1);
+
+            $('#tag' + data[i]).css('height', $('#tag' + data[i]).height() + addTagHeight + 'px').children('.num').html(parseInt($('#tag' + data[i]).children('.num').html()) + 1);
+//            票数增长的时候，判断当前的显示比例是否大于记录的显示比例等级，
+//          如果大于记录的，就设置显示比例等级为当前的，并把当前的高度除以二；
+            console.log(screenInitLevel);
+            console.log($('#tag' + data[i]).height());
+
+            if($('#tag' + data[i]).height()>=screenH ){
+                screenInitLevel++;
+                screenSize();
+                for(var n= 0,m=$('.num_shape').length;n<m;n++){
+                    $('.num_shape').eq(n).height($('.num_shape').eq(n).height()/2)
+                }
+            }
+        }
+
+    });
+    //  在公证环节给用户看
+    socket.on('notary', function (data) {
+        $('#game_notary_container').show();
+        $.ajax({
+            type: 'post',
+            url: '/screen/get_notary',
+            data: {
+                the_year_month: '201703',
+                game_id: data
+            },
+            success: function (data) {
+                var list = JSON.parse(data);
+                var notary = list.data.notary_list;
+                console.log(notary)
+                for (var i = 0, j = notary.length; i < j; i++) {
+                    $('#game_notary_container')[0].innerHTML =
+                            '<div class="notary_head">公正环节</div><div id="notaryDetail">'
+                            + '<div class="l_name">公证人:</div>'
+                            + '<div class="r_det">'+notary[i].notary_name+'</div>'
+                            + '<div class="l_name">公证人简介:</div>'
+                            + '<div class="r_det">'+notary[i].notary_intro+'</div>'
+                            + '<div class="l_name">场次名称:</div>'
+                            + '<div class="r_det">'+notary[i].game_name+'</div>'
+                            + '<div class="l_name">场次简介:</div>'
+                            + '<div class="r_det">'+notary[i].game_intro+'</div>'
+                            + '</div>'
+                            + '<div class="summary">'+notary[i].notary_name+'对该投票结果的真实性、准确性予以监督认证</br>投票结果允许保存</div>'
+                }
+            }
+        })
+    });
+    socket.on('notaryHide', function () {
+        $('#game_notary_container').hide();
+
+    })
+
+</script>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="time"></div>
+<script>
+    var time=document.querySelector('#time');
+    var hh,mm,ss,
+            s,//小时
+            second,//过程中的秒数
+            m,//递减的参数
+            timing;//循环函数
+    function timeFunc(arg){
+        var timestamp=localStorage.getItem('timestamp');
+        console.log(timestamp);
+        console.log(arg-Math.floor((new Date().getTime()-timestamp)/(1000*60)));
+
+
+        if(timestamp&&(new Date().getTime()-timestamp<arg*60*1000)){
+            m=(arg-Math.floor((new Date().getTime()-timestamp)/(1000*60)))*60
+        }else{
+            m=arg*60;
+            localStorage.setItem('timestamp',new Date().getTime())
+        }
+        timing = setInterval(Interval,1000)
+    }
+    function Interval(call){
+    console.log(m);
+    s=Math.floor(parseInt(m)/3600)//小时位
+        if(s>=0&&s<10){
+            hh='0'+s
+        }else if(s>=10){
+            hh=s
+        }
+        console.log('小时'+s)
+//        分钟
+        var minute=Math.floor(parseInt(m)/60)
+        console.log('分钟：'+minute)
+
+        if(minute-s*60>=10){
+            mm=minute-s*60;
+        }else if(minute-s*60>=0&&minute-s*60<10){
+            mm = '0'+ String(minute-s*60);
+        }
+//               秒数
+        second=m-(s*3600+minute*60);
+        console.log('秒数：'+second);
+        if(second>=10){
+            ss=second;
+            second--;
+        }else if(second>0&&second<10){
+            ss='0'+second;
+            second--
+        }else{
+            ss='00';
+//            秒数
+            if(minute>1){
+                second=59;
+            }
+        }
+//                完成计时，在此处添加计时结束的函数
+        if(m=0){
+            clearInterval(timing);
+            console.log('计时完成此处填写回调函数')
+        }
+        m=m-1;
+
+        var t=hh+':'+mm+':'+ss;
+        time.innerHTML=t;
+    }
+    timeFunc(1);
+
+</script>
+</body>
+</html>

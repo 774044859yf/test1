@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="screen-orientation" content="portrait">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <title>Young Design</title>
+
+    <script type="text/javascript" charset="UTF-8" src="/public/js/init.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function init() {
+            var str = '<link href="/public/css/normalize.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str += '<link href="/public/css/all.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/jquery.js" + utils._var() + "'>" + "</scr" + "ipt>";
+
+            document.write(str);
+            str = "";
+        }
+        init();
+    </script>
+    <style>
+        #login {
+            max-width: 50rem;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<!--登陆-->
+<div id="login">
+    <div id="main_look">
+        <!--<div id="main_look_word" class="image"></div>-->
+    </div>
+
+    <div id="log_container">
+        <!--<div id="main_container_word" class="image"></div>-->
+        <div id="ipt_container"></div>
+    </div>
+</div>
+</body>
+<script charset='utf-8' type="text/javascript">
+    function add() {
+        var str = "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/all.js" + utils._var() + "'>" + "</scr" + "ipt>" ;
+        str+= "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/login.js" + utils._var() + "'>" + "</scr" + "ipt>";
+        document.write(str);
+        str = "";
+    }
+    add();
+</script>
+</html>

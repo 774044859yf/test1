@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <script src="/public/js/socket.io.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/public/js/init.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function init() {
+            var str = '<link href="/public/css/normalize.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str += '<link href="/public/css/all.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str += '<link href="/public/css/favorite.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+
+            str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/jquery.js" + utils._var() + "'>" + "</scr" + "ipt>";
+            str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/swiper-3.4.0.min.js" + utils._var() + "'>" + "</scr" + "ipt>";
+            str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/iscroll-probe.js" + utils._var() + "'>" + "</scr" + "ipt>";
+
+            document.write(str);
+            str = "";
+        }
+        init();
+    </script>
+    <style>
+        #tagsContainer {
+            max-height: 7.5rem;
+            overflow-y: auto;
+            border-bottom: 1px solid #d3d3d3;
+        }
+        .active_tags{
+            display: inline-block;
+            padding: .5rem;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            background: #4badec;
+            margin: 5px;
+            font-size: 14px;
+        }
+        .options{
+            width: 10rem;
+            height: 2.5rem;
+            text-align: center;
+            font-size: .7rem;
+            line-height: 2.5rem;
+            background: #4cadec;
+            margin:1rem auto 0;
+
+        }
+    </style>
+
+    <title>Young Design</title>
+
+</head>
+<body>
+<div id="gameContainer">
+
+</div>
+<div id="tagsContainer"></div>
+<div id="connectMsg">正在连接...</div>
+<div class="options" id="finishGame">保存投票结果</div>
+<div class="options" id="changeGame">投票环节</div>
+<div class="options" id="changeNotary">公正环节</div>
+<div class="options" id="clearUserSession">清空用户投票状态</div>
+
+</body>
+<script charset='utf-8' type="text/javascript">
+    function add() {
+        var str = "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/all.js" + utils._var() + "'>" + "</scr" + "ipt>";
+        str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/control.js" + utils._var() + "'>" + "</scr" + "ipt>";
+        document.write(str);
+        str = "";
+    }
+    add();
+</script>
+</html>

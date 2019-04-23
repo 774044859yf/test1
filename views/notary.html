@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <script type="text/javascript" charset="UTF-8" src="/public/js/init.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function init () {
+            var str = '<link href="/public/css/normalize.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str+='<link href="/public/css/all.css' +utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str+='<link href="/public/css/swiper-3.4.0.min.css' +utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str+='<link href="/public/css/favorite.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+
+            str+="<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/jquery.js"+utils._var()+"'>" + "</scr" + "ipt>";
+            str+="<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/swiper-3.4.0.min.js"+utils._var()+"'>" + "</scr" + "ipt>";
+            str+="<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/iscroll-probe.js"+utils._var()+"'>" + "</scr" + "ipt>";
+
+            document.write(str);
+            str = "";
+        }
+        init();
+    </script>
+
+
+    <title>Young Design</title>
+
+    <style>
+        .notaryAdd{
+            width: 2.5rem;
+            height: 2.5rem;
+            background: #1cb8cf;
+            color: #fff;
+            position: absolute;
+            top: 0;
+            right: 0;
+            text-align: center;
+            line-height: 2.5rem;
+        }
+        .home{
+            float: left;
+        }
+        .hiddenModel{
+            display: none;
+            background: #1cb8cf;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: 999;
+            text-align: center;
+        }
+        .hiddenModel input{
+            width: 14rem;
+            height: 2rem;
+            margin: 10px 0;
+            padding-left: 1rem;
+            border: none;
+
+        }
+        .hiddenModel .notaryHead{
+            margin: 1rem 0 1.5rem ;
+        }
+        .hiddenModel label{
+            display: inline-block;
+            width:2rem;
+            height: 2rem;
+            line-height: 2rem;
+            text-align: center;
+        }
+        .hiddenModel .submit{
+            width: 13rem;
+            height: 2.5rem;
+            text-align: center;
+            line-height: 2.5rem;
+            background: #ffffff;
+            color: #27be8a;
+            margin: 0 auto;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        #intro,#notary_intro{
+            width: calc(14rem - 2px);
+            padding-left: 1rem;
+            border: none;
+
+        }
+        .modelClose{
+            width: 2.5rem;
+            height: 2.5rem;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #fff;
+            text-align: center;
+            line-height: 2.5rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<!--我的收藏-->
+<body>
+<div id="favorite">
+    <div id="head_nav" style="text-align: center;" class="clear">
+        <a class="home" href="http://localhost:52120/"></a>
+        公证人列表
+    </div>
+
+    <div class="swiper-container swi">
+        <div id="favoriteContainer" class="swiper-wrapper">
+            <div class="swiper-slide"><div id="favorite_schedule" class="favorites"><div class="favoriteCon"><div class="favorite_list"></div></div></div></div>
+        </div>
+    </div>
+    <div id="addModel" class="hiddenModel">
+        <div class="notaryHead">
+            添加公证人
+        </div>
+        <div class="modelClose" data-type="0">×</div>
+        <!-- 姓名-->
+            <label for="name">姓名</label>
+            <input type="text" id="name">
+        <!-- 职务-->
+        <label for="position">职务</label>
+        <input type="text" id="position">
+        <!-- 民族-->
+        <label for="nation">民族</label>
+        <input type="text" id="nation">
+        <!-- 简介-->
+        <label for="intro">简介</label>
+        <textarea name="intro" id="intro" cols="25" rows="8"></textarea>
+        <div id="subAdd" class="submit">确定添加</div>
+    </div>
+    <div id="editModel" class="hiddenModel">
+        <div class="notaryHead">
+            修改公证人
+        </div>
+        <div class="modelClose" data-type="1">×</div>
+        <!-- 姓名-->
+        <label for="notary_name">姓名</label>
+        <input type="text" id="notary_name">
+        <!-- 职务-->
+        <label for="notary_position">职务</label>
+        <input type="text" id="notary_position">
+        <!-- 民族-->
+        <label for="notary_nation">民族</label>
+        <input type="text" id="notary_nation">
+        <!-- 简介-->
+        <label for="notary_intro">简介</label>
+        <textarea name="intro" id="notary_intro" cols="25" rows="8"></textarea>
+        <div id="subEdit" class="submit">确定修改</div>
+    </div>
+
+</div>
+</body>
+<script charset='utf-8' type="text/javascript">
+    function add () {
+        var str="<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/all.js"+utils._var()+"'>" + "</scr" + "ipt>";
+        str+= "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/calendar.js"+utils._var()+"'>" + "</scr" + "ipt>";
+        document.write(str);
+        str="";
+    }
+    add();
+</script>
+
+
+</html>

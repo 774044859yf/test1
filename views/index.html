@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <title>vote</title>
+    <script type="text/javascript" charset="utf-8" src="/public/js/init.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function init() {
+            var str = '<link href="/public/css/normalize.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str += '<link href="/public/css/all.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/jquery.js" + utils._var() + "'>" + "</scr" + "ipt>";
+            document.write(str);
+            str = "";
+        }
+        init();
+    </script>
+    <style>
+        html {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!--首页-->
+<div id="index" class="page">
+    <a href="/login" class="tool" id="load"></a>
+
+    <div id="index_mainLook"></div>
+    <div id="index_nav" class="clear">
+        <div>
+
+
+            <a id="ex" href="/list" class="index_list" data-index="1">
+                <span class="listIcon"></span>
+                <span class="menu">场次列表</span>
+                <span class="rightIcon"></span>
+            </a>
+            <!-- 固定的公证人 ，几个 只有高级管理员可以修改 添加 普通用户只能看-->
+            <a id="fav" href="/notary" class="index_list" data-index="6"><span class="listIcon"></span><span
+                    class="menu">公证人管理</span><span class="rightIcon"></span></a>
+            <a id="tre" href="/control" class="index_list" data-index="2"><span class="listIcon"></span><span
+                    class="menu">环节控制</span><span class="rightIcon"></span></a>
+            <!-- 私人空间 ，我的收藏  我发起的投票场次-->
+            <a id="lay" href="/personal" class="index_list" data-index="3"><span class="listIcon"></span><span
+                    class="menu">私人空间</span><span class="rightIcon"></span></a>
+            <!--<a id="cal" href="" class="index_list" data-index="4"><span class="listIcon"></span><span-->
+                    <!--class="menu">回收站</span><span class="rightIcon"></span></a>-->
+
+            <div class="footer">
+                <p>Copyright@ 2017 Graduation Project </p>
+
+                <p>Powered by Young</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" charset='utf-8'>
+    function add() {
+        var str = "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/all.js" + utils._var() + "'>" + "</scr" + "ipt>";
+        str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/ind.js" + utils._var() + "'>" + "</scr" + "ipt>";
+        document.write(str);
+    }
+    add();
+    //    applicationCache.onupdateready = function () {
+    //        applicationCache.swapCache();
+    //        location.reload();
+    //    };
+</script>
+
+</html>

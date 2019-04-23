@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <script src="/public/js/socket.io.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/public/js/init.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function init() {
+            var str = '<link href="/public/css/normalize.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+            str += '<link href="/public/css/all.css' + utils._var() + '" rel="stylesheet" type="text/css"/>';
+
+            str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/jquery.js" + utils._var() + "'>" + "</scr" + "ipt>";
+            str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/swiper-3.4.0.min.js" + utils._var() + "'>" + "</scr" + "ipt>";
+            str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/iscroll-probe.js" + utils._var() + "'>" + "</scr" + "ipt>";
+
+            document.write(str);
+            str = "";
+        }
+        init();
+    </script>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -999;
+            background: #1b222b;
+            position: relative;
+        }
+
+        #head {
+            width: 100%;
+            height: 2em;
+            background: #797ba9;
+            font-size: 1em;
+            position: relative;
+            /*display: none;*/
+            color: #ffffff;
+            font-weight: 600;
+            /*padding:10px;*/
+        }
+
+        #contain {
+            /*background: url("./pic/itemContain.png");*/
+            /*background: url('./pic/vote.png');*/
+            /*background-size: 100% 100%;*/
+            width: 90%;
+            height: 75%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            /*margin: 2% auto 0;*/
+        }
+
+        #container {
+            /*padding: 0 37px 0 8px;*/
+            /*padding-right: 15px;*/
+            width: 80%;
+            height: 92%;
+            margin: 3% auto;
+            text-align: justify;
+            text-align-last: justify;
+            /*margin:0 auto;*/
+            hyphens: auto;
+            /*text-justify:auto;*/
+            /*margin:5% auto 0;*/
+            /*background: #466289;*/
+            /*-webkit-border-radius: 20px;*/
+            /*-moz-border-radius: 20px;*/
+            /*border-radius: 20px;*/
+            overflow-y: auto;
+            /*display: none;*/
+        }
+
+        #sub {
+            width: 150px;
+            height: 45px;
+            margin: 0 auto;
+            position: absolute;
+            bottom: -11%;
+            left: 30%;
+            line-height: 45px;
+            font-size: 12px;
+            text-align: center;
+            background: #ffffff;
+            /*-webkit-box-shadow: 2px 3px 0px 1px rgba(0, 0, 0, 0.27);*/
+            /*-moz-box-shadow: 2px 3px 0px 1px rgba(0, 0, 0, 0.27);*/
+            /*box-shadow: 2px 3px 0px 1px rgba(0, 0, 0, 0.27);*/
+            background: url('../public/img/sub.png');
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+            color: #000000;
+            /*-webkit-border-radius: 10px;*/
+            /*-moz-border-radius: 10px;*/
+            /*border-radius: 10px;*/
+            border: 0;
+            outline: none;
+        }
+
+        .msg {
+            height: 40px;
+            width: 40px;
+            position: absolute;
+            bottom: -10%;
+            left: 10%;
+            /*font-weight: 800;*/
+            color: #ffffff;
+            font-size: 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.46);
+            background: url("../public/img/num2.png");
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;;
+            line-height: 40px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            font-family: 苹方;
+            /*z-index: 999;*/
+            /*filter: Glow(color='#00ff00'strength='3px');*/
+        }
+
+        .item {
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            display: inline-block;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            padding: .2rem .8rem;
+            color: #ffffff;
+            background: #434b54;
+            /*-webkit-box-shadow: 1px 0px 1px 1px rgba(76, 76, 76, 0.56);*/
+            /*-moz-box-shadow: 1px 0px 1px 1px rgba(76, 76, 76, 0.56);*/
+            /*box-shadow: 0px 1px 1px 1px rgba(44, 62, 87, 0.56);*/
+            /*background-size:100% 100%;*/
+            margin: 2px 0;
+            font-size: 12px;
+            /*border:1px solid #797ba9;*/
+            /*color: rgba(0, 0, 0, 0.75);*/
+            font-weight: 600;
+            font-family: 苹方;
+            /*display: none;*/
+        }
+
+        .item:hover {
+            cursor: pointer;
+        }
+
+        .pic {
+            width: 100%;
+            height: 35%;
+            /*background: #45a987;*/
+        }
+
+        .pic img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #bg {
+            width: 100%;
+            height: 65%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: -99;
+        }
+
+        #bg img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #con {
+            display: none;
+            width: 10rem;
+            height: 10rem;
+            margin: auto;
+            text-align: center;
+            line-height: 5rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.55);
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .containHeader {
+            position: absolute;
+            top: -30px;
+            background: url(../public/img/keyword.png);
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+            left: 28px;
+            width: 87px;
+            height: 17px;
+            text-align: right;
+            font-family: 苹方;
+        }
+
+        #people {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #000;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        #main {
+            width: 100%;
+            height: 100%;
+
+        }
+    </style>
+
+    <title>Young Design</title>
+</head>
+<body>
+<!--投票的标签-->
+<!--<div id="contain">-->
+<!--<div class="containHeader"></div>-->
+<!--<div id="container"></div>-->
+<!--<button id="sub"></button>-->
+<!--<div class="msg"><span id="num" class="right">10</span></div>-->
+<!--</div>-->
+<!--投票结束的页面-->
+<!--<div id="con"><div class="con">投票结束</div></div>-->
+<!--人物介绍的页面-->
+<!--<div id="main"></div>-->
+
+</body>
+<script charset='utf-8' type="text/javascript">
+    function add() {
+        var str = "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/all.js" + utils._var() + "'>" + "</scr" + "ipt>";
+         str += "<scri" + "pt charset='UTF-8' type='text/javascript' src='/public/js/socket.io.js" + utils._var() + "'>" + "</scr" + "ipt>";
+        document.write(str);
+        str = "";
+    }
+    add();
+    function isEmptyObject(obj) {
+        for (var key in obj) {
+            return false;
+        }
+        return true;
+    }
+//    var socket = io.connect('ws://172.27.188.10:55555');
+//    var socket = io.connect('ws://10.17.121.218:55555');
+//    var socket = io.connect('ws://10.4.175.162:55555');
+//    var socket = io.connect('ws://223.104.3.198:5555');
+    var socket = io.connect('ws://192.168.43.109:5555');
+
+
+
+    //默认申请显示投票环节
+    var game_detail={};
+    var arr;
+    var oItem = document.getElementsByClassName('item');
+    var game;
+    socket.on('success', function (data) {
+        console.log(data);
+    });
+    socket.emit('mobileReady');
+    socket.on('mobileBegin',function(data){
+        game=data;
+        gameDefault()
+
+    });
+    socket.on('game_default',function(data){
+        console.log('连接成功');
+        game_detail={};
+        game=data;
+        gameDefault();
+
+    });
+//清空状态
+    socket.on('clearUserStatus',function(){
+        $.ajax({
+            type:'post',
+            url:'/mobile/clear_user_status',
+            success:function(data){
+                console.log('已清空用户投票状态')
+            }
+        })
+
+    });
+    function gameDefault(){
+        if(game){
+            $.ajax({
+                type: 'post',
+                url: '/control/active_game',
+                data: {
+                    the_year_month: '201703',
+                    game_id:game
+                },
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    if (data.Success == '1') {
+                        game_detail.intro=data;
+                        $.ajax({
+                            type: 'post',
+                            url: '/control/active_tags',
+                            data: {
+                                the_year_month: '201703',
+                                game_id:game
+                            },
+                            success: function (data) {
+                                var data = JSON.parse(data);
+                                if (data.Success == '1') {
+                                    game_detail.tags=data;
+                                    console.log(game_detail)
+                                    pageInit()
+                                }
+                            }
+                        })
+
+                    }
+                }
+            })
+        }else{
+            $('body').html('<div id="contain"> <div class="containHeader"></div> <div id="container"></div><div id="con"><div class="con">没有正在投票的场次</div></div>')
+        }
+
+    }
+    function pageInit(){
+        $('body').html('<div id="contain"> <div class="containHeader"></div> <div id="container"></div> <button id="sub"></button> <div class="msg"><span id="num" class="right">10</span></div> </div><div id="con"><div class="con">投票结束</div></div>')
+        var msg = game_detail.intro.data.list[0];
+        var list = game_detail.tags.data.list;
+        var user = game_detail.tags.data.user_id;
+        var limit=msg.tag_limit;
+        if (msg.game_status == '0'){
+//            未开场的投票
+            $('#container,#sub,.msg').show();
+            document.getElementById('num').innerHTML = parseInt(limit);
+            if (msg.user_phone == user) {
+//                列出标签
+                var item = '';
+                if (list.length > 0) {
+                    for (var i = 0, j = list.length; i < j; i++) {
+                        item += '<div class="item i2" id="' + list[i].tag_id + '" data="0" pos="3">' + list[i].tag_name + '</div>'
+                    }
+                } else {
+                    item += '没有标签';
+                }
+                $('#container').html(item);
+                var num = 0;
+                arr = [];
+                //    是否可以投票
+                var voteStatus=false;
+                $.ajax({
+                    type: 'post',
+                    url: '/mobile/user_status',
+                    success: function (data) {
+                        var user_status = data;
+//                        console.log(user_status)
+                        voteStatus=data
+                        if (user_status) {
+                            $('#con').hide()
+//                       点击标签时的选中与取消，计数功能
+                            for (var i = 0; i < oItem.length; i++) {
+                                oItem[i].onclick = function () {
+//                                    console.log(this);
+                                    function colorIndex() {
+                                        return Math.floor(Math.random() * 6)
+                                    }
+                                    var color = ['#27BE8A', '#3E6FC1', '#676767', '#57B851', '#C4B997', '#991AC4'];
+                                    if (num < parseInt(limit) && this.getAttribute('data') == '0') {
+                                        this.setAttribute('data', '1');
+                                        this.style.background = color[colorIndex()]
+                                        num++;
+                                    } else if (this.getAttribute('data') == '1') {
+                                        this.setAttribute('data', '0');
+                                        this.style.background = '#434b54';
+                                        num--;
+                                    }
+                                    document.getElementById('num').innerHTML = parseInt(limit) - num;
+                                };
+                            }
+                        }
+                        else {
+//                          不可以投票
+                            $('#con').show().children('.con').html('已提交');
+                        }
+
+                    }
+                });
+//    投票页面点击提交按钮功能
+                $('#sub').click(function () {
+                    for (var i = 0; i < oItem.length; i++) {
+                        oItem[i].onclick = null;
+                        if (oItem[i].getAttribute('data') == 1) {
+                            var a = oItem[i].getAttribute('id');
+                            arr.push(a);
+                        }
+                    }
+                    if(voteStatus){
+                        $.ajax({
+                            type: 'post',
+                            url: '/mobile/set_false',
+                            success: function (data) {
+                                console.log('已经提交')
+                                voteStatus=false;
+                                if (data) {
+                                    socket.emit('add', arr)
+                                    $('#con').show().children('.con').html('已提交');
+                                }
+                            }
+                        })
+                    }
+
+                });
+            }
+            else {
+//                显示场次还未开始
+                $('#con').show().children('.con').html('该场次还未开始');
+            }
+        }
+        else {
+//            显示投票结果
+            $('#con').show().children('.con').html('该场次已经结束');
+        }
+    }
+    $('#con').click(function () {
+        $(this).hide()
+    });
+    //  场次状态为1 则显示投票结果
+    //  不是本人的场次  状态为0 ，则显示未开始，
+    //    投票结束页面
+</script>
+</html>
