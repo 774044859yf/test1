@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title></title>
+    <style>
+        .whiteChar{
+            color: #ffffff;
+            margin:15% 13% 10% 7%;
+            font-size: 50px;
+            text-align: right;
+        }
+        .personNum{
+            font-size: 115px;
+        }
+        .phone{
+            background-color:#1361FD ;
+            margin:10% 13% 0 7%;
+            padding-top: 15px;
+            padding-bottom: 17px;
+            width: calc(80% - 20px);
+            font-size: 14px;
+            border: 0;
+            padding-left:20px;
+            color: #ffffff;
+        }
+        .phone::-webkit-input-placeholder{
+            color: #ffffff;
+            text-align:center;
+        }
+
+        .directLogin{
+            color: #ffffff;
+            margin:4% 0 0 5%;
+            font-size: 14px;
+            text-indent: 15px;
+        }
+        .iocnDiv{
+            margin:5% 13% 0 7%;
+            border: 10px;
+            border-style: solid;
+            border-color: white;
+            border-radius: 100%;
+            background:#fff;
+            float: right;
+            height: 25px;
+            width: 25px;
+        }
+
+    </style>
+</head>
+<body bgcolor="#EC494E">
+<div class="whiteChar">
+    现在<br><span class="personNum">3872</span><br>有空正在线<br>
+</div>
+<input class="phone" placeholder="手机号码">
+<div class="directLogin">直接进入</div>
+<div class="iocnDiv"></div>
+</body>
+<script>
+    var numDom=document.querySelector('.personNum');
+    var toDom=document.querySelector('.iocnDiv');
+    var num=numDom.innerHTML*1;
+    toDom.addEventListener('click',function(){
+        var phone=document.querySelector('.phone').value;
+        if(!(/^1(3|4|5|7|8|9)\d{9}$/.test(phone))){
+            alert('请输入正确手机号')
+            return;
+        }
+        num++
+        numDom.innerHTML=num;
+    })
+</script>
+
+</html>
